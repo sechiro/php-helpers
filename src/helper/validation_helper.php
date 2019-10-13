@@ -97,6 +97,27 @@ function is_kana($str){
 }
 
 /**
+ * RPC違反のキャリアメールアドレスも含めて簡易的にメールアドレスをチェック
+ * 以下のＨＴＭＬ５ input[type=email] の仕様に準じる
+ * https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address
+ * （現在はマルチバイトのメールアドレスもあり得るが、意図的に除外している）
+ * @param $str
+ * @return bool
+ */
+function is_email($str){
+    $pattern = "/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@";
+    $pattern .= "[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/";
+    if ( preg_match($pattern,$str) ){
+        return true;
+    }
+    return false;
+}
+
+
+/****************
+ * 文字列コンバート
+ ****************/
+/**
  * 全角スペースが入っていても変換してtrim
  * @param $str
  * @return string

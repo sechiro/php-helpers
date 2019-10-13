@@ -104,4 +104,13 @@ class HelperTest extends TestCase
         $str = '　 　ｱｲｳｴｱｦ 　';
         $this->assertTrue(is_hankaku_katakana(trim2($str)));
     }
+
+    /**
+     * @test
+     */
+    public function メールアドレスチェック()
+    {
+        $str = 'pebble14+test@gmail.com';
+        $this->assertTrue(is_email($str));
+    }
 }
