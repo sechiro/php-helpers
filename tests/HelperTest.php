@@ -41,7 +41,7 @@ class HelperTest extends TestCase
      */
     public function 全角ひらがな()
     {
-        $this->assertTrue(is_hiragana('アアアアアア'));
+        $this->assertTrue(is_hiragana('ああああ'));
     }
 
     /**
@@ -113,4 +113,25 @@ class HelperTest extends TestCase
         $str = 'pebble14+test@gmail.com';
         $this->assertTrue(is_email($str));
     }
+    /**
+     * @test
+     */
+    public function 電話番号チェック()
+    {
+        $str = '080-6507-9966';
+        $this->assertTrue(is_telnum($str, true));
+
+        $str = '08065079966';
+        $this->assertTrue(is_telnum($str, false));
+    }
+
+    /**
+     * @test
+     */
+    public function 記号・特殊文字が含まれていないかチェック()
+    {
+        $str = 'あああ・';
+        $this->assertTrue(is_normal_string($str));
+    }
+
 }
