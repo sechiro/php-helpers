@@ -1,0 +1,7 @@
+<phpunit bootstrap="src/helper/validation_helper.php">
+    <testsuites>
+        <testsuite name="helper">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
