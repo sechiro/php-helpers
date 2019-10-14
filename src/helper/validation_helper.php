@@ -116,20 +116,48 @@ function is_email(string $str){
 /**
  * 電話番号チェック
  * @param string $str
- * @param bool $hyphen
  * @return bool
  */
-function is_telnum(string $str, bool $hyphen=true){
-    if($hyphen===true){
-        $pattern = "/^0\d{2,3}-\d{1,4}-\d{4}$/";
-    } else {
-        $pattern = "/^0\d{9,10}$/";
+function is_telnum(string $str){
+    $pattern = "/^0\d{9,10}$/";
+    if ( preg_match($pattern, $str) ){
+        return true;
     }
+    $pattern = "/^0\d{2,3}-\d{1,4}-\d{4}$/";
     if ( preg_match($pattern, $str) ){
         return true;
     }
     return false;
 }
+
+/**
+ * 電話番号チェック
+ * @param string $str
+ * @param bool $hyphen
+ * @return bool
+ */
+function is_telnum_hyphen(string $str){
+    $pattern = "/^0\d{2,3}-\d{1,4}-\d{4}$/";
+    if ( preg_match($pattern, $str) ){
+        return true;
+    }
+    return false;
+}
+
+/**
+ * 電話番号チェック
+ * @param string $str
+ * @param bool $hyphen
+ * @return bool
+ */
+function is_telnum_number(string $str){
+    $pattern = "/^0\d{9,10}$/";
+    if ( preg_match($pattern, $str) ){
+        return true;
+    }
+    return false;
+}
+
 
 /**
  * 文字列に半角・全角の記号・特殊文字が入っていないか判定
